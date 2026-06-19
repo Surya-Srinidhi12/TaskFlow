@@ -1,0 +1,16 @@
+{
+  "name": "taskflow-landing-page",
+  "version": "1.0.0",
+  "description": "Mock front-end developer assessment landing page.",
+  "scripts": {
+    "minify": "node minify.js"
+  },
+  "keywords": [
+    "saas",
+    "landing-page",
+    "responsive",
+    "accessibility"
+  ],
+  "author": "Antigravity AI",
+  "license": "ISC"
+}

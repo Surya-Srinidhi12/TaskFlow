@@ -6,17 +6,30 @@
   <title>TaskFlow - Streamline Your Team's Productivity</title>
   <meta name="description" content="TaskFlow is the ultimate collaborative SaaS dashboard helping teams automate workflows, view analytics, and run projects seamlessly.">
   
-  <!-- Fonts -->
+  <script>
+    // Apply theme immediately to prevent flashing
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Main Stylesheets -->
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/responsive.min.css">
 </head>
 <body>
-  <!-- Header & Navigation -->
+  <!-- Navigation -->
   <header class="header" id="header">
     <nav class="nav-container" aria-label="Main Navigation">
       <a href="#" class="logo-link" id="logo-link">
@@ -35,7 +48,6 @@
         <span class="logo-text">TaskFlow</span>
       </a>
 
-      <!-- Desktop Menu Links -->
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-list">
           <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
@@ -46,7 +58,6 @@
         </ul>
       </div>
 
-      <!-- Actions (Theme Toggle & CTA) -->
       <div class="nav-actions">
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode" title="Toggle Theme">
           <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -60,7 +71,6 @@
 
         <a href="#pricing" class="btn btn-primary nav-cta">Get Started</a>
 
-        <!-- Hamburger Icon -->
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -70,7 +80,6 @@
     </nav>
   </header>
 
-  <!-- Main Content Area -->
   <main>
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -97,7 +106,6 @@
           <p class="section-subtitle">Everything you need to deliver high-quality code and run operations without friction.</p>
         </div>
         <div class="features-grid">
-          <!-- Card 1: Collaboration -->
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -111,7 +119,6 @@
             <p class="feature-desc">Sync with your team instantly. Edit project boards, update timelines, and comment in real-time with zero lag.</p>
           </article>
 
-          <!-- Card 2: Automation -->
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -123,7 +130,6 @@
             <p class="feature-desc">Automate repetitive tasks with customizable triggers and actions. Eliminate human error and build with speed.</p>
           </article>
 
-          <!-- Card 3: Analytics -->
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -136,7 +142,6 @@
             <p class="feature-desc">Visualize progress with interactive burn-down charts, team capacity heatmaps, and customizable analytics dashboards.</p>
           </article>
 
-          <!-- Card 4: Security -->
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -147,7 +152,6 @@
             <p class="feature-desc">Enterprise-grade encryption, multi-factor authentication, granular role-based permissions, and SOC 2 Type II compliance.</p>
           </article>
 
-          <!-- Card 5: Integrations -->
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -159,7 +163,6 @@
             <p class="feature-desc">Connect seamlessly with your favorite dev tools: Slack, GitHub, Jira, Figma, and Notion with simple one-click sync.</p>
           </article>
 
-          <!-- Card 6: Smart Search -->
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -182,12 +185,104 @@
           <p class="section-subtitle">Choose the perfect plan for your business. No hidden fees.</p>
         </div>
         <div class="pricing-grid">
-          <!-- 3 pricing cards will go here -->
+          <article class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="pricing-tier">Starter</h3>
+              <p class="pricing-desc">For small teams getting started.</p>
+              <div class="pricing-price">
+                <span class="currency">₹</span>
+                <span class="amount">1,499</span>
+                <span class="period">/mo</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Up to 5 team members</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Core taskboards & timeline</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>10 GB Cloud Storage</span>
+              </li>
+              <li class="unavailable">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom workflow automation</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary pricing-cta">Get Started</a>
+          </article>
+
+          <article class="pricing-card recommended">
+            <div class="recommend-badge">Most Popular</div>
+            <div class="pricing-header">
+              <h3 class="pricing-tier">Professional</h3>
+              <p class="pricing-desc">Perfect for scaling companies.</p>
+              <div class="pricing-price">
+                <span class="currency">₹</span>
+                <span class="amount">3,999</span>
+                <span class="period">/mo</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Unlimited team members</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Advanced timelines & Gantt</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>100 GB Cloud Storage</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom workflow automation</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-primary pricing-cta">Try Professional Free</a>
+          </article>
+
+          <article class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="pricing-tier">Enterprise</h3>
+              <p class="pricing-desc">For complex project needs.</p>
+              <div class="pricing-price">
+                <span class="currency">₹</span>
+                <span class="amount">7,999</span>
+                <span class="period">/mo</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Unlimited team members</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom dashboards & SLA</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Unlimited Cloud Storage</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Dedicated support engineer</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary pricing-cta">Contact Enterprise</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Blog Section (API Integration) -->
+    <!-- Blog Section -->
     <section class="blog section" id="blog">
       <div class="container">
         <div class="section-header">
@@ -263,7 +358,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/app.js"></script>
+  <script src="js/app.min.js"></script>
 </body>
 </html>

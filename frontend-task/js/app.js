@@ -1,9 +1,19 @@
-/**
- * TaskFlow Landing Page JavaScript
- */
+// TaskFlow main application script
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Mobile Navigation Menu ---
+  // Dark mode
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+
+  // Mobile nav menu
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -33,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Contact Form Validation ---
+  // Contact form validation
   const contactForm = document.getElementById('contact-form');
   const nameInput = document.getElementById('contact-name');
   const emailInput = document.getElementById('contact-email');
@@ -107,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const isMessageValid = validateMessage();
 
       if (isNameValid && isEmailValid && isMessageValid) {
-        // Success response
         formStatus.className = 'form-status-alert success';
         formStatus.innerHTML = `
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -117,16 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
           Message sent successfully! We will get back to you shortly.
         `;
         
-        // Reset form fields
         contactForm.reset();
         
-        // Clear success notification after 5 seconds
         setTimeout(() => {
           formStatus.className = 'form-status-alert';
           formStatus.innerHTML = '';
         }, 5000);
       } else {
-        // Error response
         formStatus.className = 'form-status-alert error';
         formStatus.innerHTML = `
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -139,6 +145,104 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Blog section (API feed)
+  const blogGrid = document.getElementById('blog-grid');
+  const categories = ['Productivity', 'Engineering', 'Workflow', 'SaaS', 'Security', 'Management'];
+  const dates = [
+    'June 18, 2026',
+    'June 15, 2026',
+    'June 10, 2026',
+    'June 08, 2026',
+    'June 02, 2026',
+    'May 28, 2026'
+  ];
+
+  function renderSkeletons() {
+    if (!blogGrid) return;
+    const skeletonTemplate = `
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-bar category"></div>
+        <div class="skeleton-bar title-line"></div>
+        <div class="skeleton-bar title-line-short"></div>
+        <div class="skeleton-bar body-line"></div>
+        <div class="skeleton-bar body-line"></div>
+        <div class="skeleton-bar body-line-short"></div>
+        <div class="skeleton-bar cta"></div>
+      </div>
+    `;
+    blogGrid.innerHTML = skeletonTemplate.repeat(6);
+  }
+
+  async function fetchBlogPosts() {
+    if (!blogGrid) return;
+    
+    renderSkeletons();
+
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const posts = data.slice(0, 6);
+
+      blogGrid.innerHTML = '';
+      posts.forEach((post, index) => {
+        const category = categories[index % categories.length];
+        const date = dates[index % dates.length];
+        
+        const formattedTitle = post.title.charAt(0).toUpperCase() + post.title.slice(1);
+        const excerpt = post.body.charAt(0).toUpperCase() + post.body.slice(1);
+
+        const card = document.createElement('article');
+        card.className = 'blog-card';
+        card.innerHTML = `
+          <div class="blog-meta">
+            <span class="blog-category">${category}</span>
+            <time datetime="2026-06-19" class="blog-date">${date}</time>
+          </div>
+          <h3 class="blog-card-title">${formattedTitle}</h3>
+          <p class="blog-card-excerpt">${excerpt}</p>
+          <a href="#" class="blog-read-more" aria-label="Read full article on ${formattedTitle}">
+            Read Full Article
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        `;
+        blogGrid.appendChild(card);
+      });
+      
+    } catch (error) {
+      console.error('Blog load error:', error);
+      
+      blogGrid.innerHTML = `
+        <div class="blog-error-container">
+          <div class="blog-error-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="blog-error-title">Failed to load articles</h3>
+          <p class="blog-error-desc">There was an error retrieving the latest blog posts. Please check your internet connection and try again.</p>
+          <button id="blog-retry-btn" class="btn btn-primary blog-retry-btn">Retry Loading</button>
+        </div>
+      `;
+      
+      const retryBtn = document.getElementById('blog-retry-btn');
+      if (retryBtn) {
+        retryBtn.addEventListener('click', fetchBlogPosts);
+      }
+    }
+  }
+ 
+  fetchBlogPosts();
 });
 
 
