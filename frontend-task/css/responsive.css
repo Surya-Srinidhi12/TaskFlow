@@ -1,18 +1,129 @@
-/* ==========================================================================
-   TaskFlow Responsive Rules
-   ========================================================================== */
-
 /* Tablet View (min-width: 768px and max-width: 1024px) */
 @media (min-width: 768px) {
-  /* Tablet structures go here */
+  /* General Grid Layouts */
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    text-align: center;
+  }
+  .hero-content {
+    align-items: center;
+  }
+  .hero-subtitle {
+    margin: 0 auto;
+  }
+  .hero-image-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+  }
 }
 
 /* Desktop View (min-width: 1025px) */
 @media (min-width: 1025px) {
-  /* Desktop structures go here */
+  .hero-container {
+    grid-template-columns: 1.15fr 0.85fr;
+    text-align: left;
+  }
+  .hero-content {
+    align-items: flex-start;
+  }
 }
 
 /* Mobile adjustments (max-width: 767px) */
 @media (max-width: 767px) {
-  /* Mobile details go here */
+  .hamburger {
+    display: flex;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 72px; /* height of header */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 72px);
+    background-color: hsla(220, 25%, 97%, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 3rem 1.5rem;
+    display: none; /* hidden initially */
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  [data-theme="dark"] .nav-menu {
+    background-color: hsla(224, 71%, 4%, 0.98);
+  }
+  
+  .nav-menu.active {
+    display: flex;
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  .nav-link {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .nav-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-cta {
+    display: none; /* hide header CTA button on mobile */
+  }
+  
+  .hero {
+    padding: 8rem 0 4rem 0;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .hero-content {
+    align-items: center;
+  }
+  
+  .hero-title {
+    font-size: 2.25rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.05rem;
+    margin: 0 auto;
+  }
+  
+  .hero-buttons {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
+
