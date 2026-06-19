@@ -1,0 +1,18 @@
+/* ==========================================================================
+   TaskFlow Responsive Rules
+   ========================================================================== */
+
+/* Tablet View (min-width: 768px and max-width: 1024px) */
+@media (min-width: 768px) {
+  /* Tablet structures go here */
+}
+
+/* Desktop View (min-width: 1025px) */
+@media (min-width: 1025px) {
+  /* Desktop structures go here */
+}
+
+/* Mobile adjustments (max-width: 767px) */
+@media (max-width: 767px) {
+  /* Mobile details go here */
+}
