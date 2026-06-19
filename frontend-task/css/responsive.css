@@ -16,6 +16,10 @@
     max-width: 700px;
     margin: 0 auto;
   }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Desktop View (min-width: 1025px) */
@@ -115,6 +119,11 @@
     width: 100%;
   }
 
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   @keyframes slideDown {
     from {
       opacity: 0;
@@ -126,4 +135,5 @@
     }
   }
 }
+
 
