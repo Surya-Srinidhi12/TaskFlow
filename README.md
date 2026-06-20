@@ -15,10 +15,6 @@ A responsive and lightweight landing page for a SaaS project management applicat
 - **API Feed**: Renders 6 blog posts from JSONPlaceholder, including loading skeleton panels.
 - **Responsiveness**: Smooth transitions from widescreen desktop columns down to single-column mobile views.
 
-## How to Run
+## Demo Video
 
-1. Open `index.html` directly in any web browser.
-2. To compile CSS/JS changes to minified files:
-   ```bash
-   npm run minify
-   ```
+<video src="frontend-task/images/demo_video" width="100%" controls></video>
