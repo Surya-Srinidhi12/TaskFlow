@@ -17,8 +17,16 @@ A responsive and lightweight landing page for a SaaS project management applicat
 
 ## How to Run
 
-1. Open `index.html` directly in any web browser.
-2. To compile CSS/JS changes to minified files:
+1. To compile CSS/JS changes to minified files:
    ```bash
    npm run minify
    ```
+
+   ##Demo Video
+   
+
+https://github.com/user-attachments/assets/6321c8d8-10c2-4f82-907c-bb3ef76d0f5a
+
+
+
+
