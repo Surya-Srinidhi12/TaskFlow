@@ -17,4 +17,8 @@ A responsive and lightweight landing page for a SaaS project management applicat
 
 ## Demo Video
 
-<video src="frontend-task/images/demo_video" width="100%" controls></video>
+
+
+https://github.com/user-attachments/assets/3081bb3c-65eb-4099-8f24-d39c5e37c6f3
+
+
